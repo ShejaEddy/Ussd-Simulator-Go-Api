@@ -17,7 +17,7 @@ func Send() http.HandlerFunc {
 		fakeKey := "131"
 
 		if key == fakeKey && len(digit) == 0 {
-			w.Write([]byte("CON 1. Buy MTN Packet 2. Buy Tigo Packet"))
+			w.Write([]byte("CON 1. Buy MTN Packet \n 2. Buy Tigo Packet"))
 			return
 		}
 		if key == fakeKey && len(digit) != 0 {
@@ -25,10 +25,10 @@ func Send() http.HandlerFunc {
 			if len(s) == 1 {
 				switch s[0] {
 				case "1":
-					w.Write([]byte("CON 1. Mobile Money 2. Mtn Balance"))
+					w.Write([]byte("CON 1. Mobile Money \n 2. Mtn Balance"))
 					return
 				case "2":
-					w.Write([]byte("CON 1. Tigo Cash 2. Tigo Balance"))
+					w.Write([]byte("CON 1. Tigo Cash \n 2. Tigo Balance"))
 					return
 				}
 				return
@@ -37,10 +37,13 @@ func Send() http.HandlerFunc {
 			if len(s) == 2 {
 				switch s[1] {
 				case "1":
-					w.Write([]byte("CON 1. Enter Pin 2. Go Back"))
+					w.Write([]byte("CON 1. Enter Pin \n 2. Go Back"))
 					return
 				case "2":
-					w.Write([]byte("CON 1. Enter Pin 2. Go Back"))
+					w.Write([]byte("CON 1. Enter Pin \n 2. Go Back"))
+					return
+				default:
+					w.Write([]byte("END Invalid Pin"))
 					return
 				}
 				return
@@ -53,9 +56,13 @@ func Send() http.HandlerFunc {
 				case "2":
 					w.Write([]byte("END Not Yet Integrated"))
 					return
+				default:
+					w.Write([]byte("END Invalid Pin"))
+					return
 				}
 				return
 			}
+
 			if len(s) == 4 && len(s[3]) == 4 {
 
 				w.Write([]byte("END Wait For results for your request"))
