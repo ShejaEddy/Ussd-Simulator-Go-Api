@@ -1,2 +1,2 @@
-#Go api for Ussd-Assimulator
+#Go api for Ussd-Simulator
 ***************************
